@@ -1,11 +1,12 @@
 import { fetchCategories, fetchSources } from '@/api/api';
 import Main from '@/components/Main/Main';
+import MainSkeleton from '@/ui/Skeleton/MainSkeleton';
 import { Suspense } from 'react';
 
 export default async function MainPage() {
   return (
     <main>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<MainSkeleton/>}>
         <MainWrapper />
       </Suspense>
     </main>
