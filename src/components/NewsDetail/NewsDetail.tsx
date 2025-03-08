@@ -39,10 +39,17 @@ export default function NewsDetail(props: Props) {
         <Link href={`/dashboard?${params}`} component={NextLink}>
           Назад к новостям
         </Link>
+
         <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold' }}>
           {article.title}
         </Typography>
-        <Grid container>
+        <Grid
+          container
+          sx={{
+            alignItems: 'center',
+            mb: 1,
+          }}
+        >
           <Grid size="grow">
             <Typography variant="subtitle1" color="text.secondary">
               {article.date}
@@ -57,7 +64,15 @@ export default function NewsDetail(props: Props) {
             </Button>
           </Grid>
         </Grid>
-
+        <Box
+          component="img"
+          sx={{
+            height: 'auto',
+            width: '100%',
+          }}
+          alt={article.title}
+          src={article.image}
+        />
         <Paper variant="outlined" sx={{ p: 2, mt: 2, mb: 2 }}>
           <Typography
             variant="body1"
