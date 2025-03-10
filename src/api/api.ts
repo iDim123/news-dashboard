@@ -58,18 +58,18 @@ export async function fetchNewsDetail(
 ): Promise<NewsItem | undefined> {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/news/${id}`);
-    if(res.status === 404) return undefined;
+    if (res.status === 404) return undefined;
     return await res.json();
   } catch (err) {
     throw new Error('Failed to fetch news.');
   }
 }
 
-export async function fetchRelatedNews(
-  id: number
-): Promise<NewsItem[]> {
+export async function fetchRelatedNews(id: number): Promise<NewsItem[]> {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/relatedNews/${id}`);
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/relatedNews/${id}`
+    );
     return await res.json();
   } catch (err) {
     throw new Error('Failed to fetch news.');

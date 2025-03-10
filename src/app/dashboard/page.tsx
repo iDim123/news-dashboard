@@ -41,6 +41,5 @@ async function DashboardWrapper({
   newsFilters: { [key: string]: string[] | undefined };
 }) {
   const news = await fetchNews(newsFilters);
-
   return <Dashboard news={news} />;
 }

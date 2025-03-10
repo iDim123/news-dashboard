@@ -6,7 +6,7 @@ import { Suspense } from 'react';
 export default async function MainPage() {
   return (
     <main>
-      <Suspense fallback={<MainSkeleton/>}>
+      <Suspense fallback={<MainSkeleton />}>
         <MainWrapper />
       </Suspense>
     </main>
