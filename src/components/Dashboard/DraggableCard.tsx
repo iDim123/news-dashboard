@@ -1,19 +1,35 @@
 'use client';
 
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import NextLink from 'next/link';
 import { NewsItem } from '@/models';
 import {
+  Button,
   Card,
   CardActions,
   CardContent,
   CardMedia,
   Grid2 as Grid,
+  styled,
 } from '@mui/material';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { useSearchParams } from 'next/navigation';
+
+const StyledCard = styled(Card)({
+  transition: 'all 300ms',
+  '&:hover': {
+    backgroundColor: '#eee'
+  },
+});
+
+const StyledTypography = styled(Typography)({
+  display: '-webkit-box',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  WebkitLineClamp: 2,
+  WebkitBoxOrient: 'vertical',
+});
 
 type Props = {
   item: NewsItem;
@@ -37,29 +53,31 @@ export default function DraggableCard(props: Props) {
       style={style}
       {...attributes}
       {...listeners}
-      size={{ xs: 12, sm: 6, md: 4 }}
+      size={{ xs: 12, sm: 4, md: 6 }}
     >
-      <Card sx={{ maxWidth: 345 }}>
+      <StyledCard>
         <CardMedia
           component="img"
-          height="140"
           image={item.image}
           alt={item.title}
+          sx={{
+            aspectRatio: '16 / 9',
+          }}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {item.title}
           </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+          <StyledTypography variant="body2" color="text.secondary">
             {item.description}
-          </Typography>
-          <CardActions>
-            <Link href={`/dashboard/${item.id}?${params}`} component={NextLink}>
-              Детальнее
-            </Link>
-          </CardActions>
+          </StyledTypography>
         </CardContent>
-      </Card>
+        <CardActions>
+          <Button size="small" href={`/dashboard/${item.id}?${params}`} component={NextLink}>
+            Детальнее
+          </Button>
+        </CardActions>
+      </StyledCard>
     </Grid>
   );
 }
